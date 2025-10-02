@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>messages of love 💖</title>
+  <style>
+    /* === Basic Page Styling === */
+    body {
+      margin: 0;
+      background-color: #000; /* all black background */
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* === Message Container === */
+    #messages {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .message {
+      font-size: 24px;
+      color: #ff66cc; /* aesthetic pink */
+      margin: 10px 0;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeSlide 3s forwards;
+      white-space: pre-line; /* preserves line breaks */
+    }
+
+    /* multiple colors */
+    .color1 { color: #ff66cc; }
+    .color2 { color: #66ffcc; }
+    .color3 { color: #ffcc66; }
+    .color4 { color: #66ccff; }
+    .color5 { color: #cc66ff; }
+
+    /* animation for messages */
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(50px); }
+      20% { opacity: 1; transform: translateY(0); }
+      80% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-50px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="messages"></div>
+
+  <script>
+    const messagesDiv = document.getElementById("messages");
+
+    // List of messages to display
+    const messages = [
+      "chloe,\nthank you for being my everything 💖",
+      "i love you more than words can say 🌸",
+      "you make every day brighter ☀️",
+      "i appreciate your kindness, your heart, and your soul 💕",
+      "you are my one and only, my forever 💝",
+      "thank you for being you, perfectly and beautifully 💛",
+      "my love for you grows every single day 🌹",
+      "you are cherished, adored, and deeply loved 💫"
+    ];
+
+    // Function to show a random message
+    function showMessage() {
+      const messageText = messages[Math.floor(Math.random() * messages.length)];
+      const msgEl = document.createElement("div");
+      msgEl.classList.add("message");
+
+      // random aesthetic color
+      const colorClass = "color" + (Math.floor(Math.random() * 5) + 1);
+      msgEl.classList.add(colorClass);
+
+      msgEl.textContent = messageText;
+      messagesDiv.appendChild(msgEl);
+
+      // remove message after animation ends (3s)
+      setTimeout(() => {
+        msgEl.remove();
+      }, 3000);
+    }
+
+    // Show a new message every 2 seconds
+    setInterval(showMessage, 2000);
+
+    // Show one immediately on page load
+    showMessage();
+  </script>
+
+</body>
+</html>
